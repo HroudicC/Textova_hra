@@ -7,6 +7,8 @@ public class WorldMap {
 
 
     HashMap<Integer, Room> world = new HashMap<>();
+    private int start = 1;
+    private int currentPosition = start;
 
 
     public boolean loadMap(){
@@ -45,7 +47,4 @@ public class WorldMap {
         }
 
     }
-
-
-
 }

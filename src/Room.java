@@ -23,4 +23,14 @@ public class Room {
     public ArrayList<Integer> getAvailableRooms() {
         return availableRooms;
     }
+
+    WorldMap worldMap = new WorldMap();
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id = " + id +
+                ", locationName = " + locationName +
+                ", availableRooms = " + availableRooms +
+                '}';
+    }
 }
