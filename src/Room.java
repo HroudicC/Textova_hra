@@ -24,7 +24,6 @@ public class Room {
         return availableRooms;
     }
 
-    WorldMap worldMap = new WorldMap();
     @Override
     public String toString() {
         return "Room{" +

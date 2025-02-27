@@ -5,5 +5,6 @@ public class Main {
         WorldMap worldMap = new WorldMap();
         worldMap.loadMap();
         System.out.println(worldMap.world.get(7));
+        worldMap.konzole();
     }
 }

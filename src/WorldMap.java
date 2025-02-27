@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class WorldMap {
 
@@ -45,6 +46,31 @@ public class WorldMap {
         }catch (Exception e){
             return false;
         }
+    }
+
+    public void konzole(){
+
+            Scanner scanner = new Scanner(System.in);
+
+            while (true) {
+                Room room = world.get(currentPosition);
+                System.out.println("Právě se nacházíš v: " + room.getLocationName());
+                System.out.println("Můžeš jít do místností: " + room.getAvailableRooms());
+                System.out.print("Zadej číslo místnosti nebo 0 pro ukončení: ");
+
+                int input = scanner.nextInt();
+
+                if (input == 0) {
+                    System.out.println("Hra ukončena.");
+                    break;
+                }
+
+                if (room.getAvailableRooms().contains(input)) {
+                    currentPosition = input; // Přesun do nové místnosti
+                } else {
+                    System.out.println("Tam nemůžeš jít! Zkus to znovu.");
+                }
+            }
 
     }
 }
