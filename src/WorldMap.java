@@ -2,10 +2,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class WorldMap {
-
 
     HashMap<Integer, Room> world = new HashMap<>();
     private int start = 1;
@@ -13,7 +11,6 @@ public class WorldMap {
 
 
     public boolean loadMap(){
-
         try (BufferedReader br = new BufferedReader(new FileReader("src/Map"))) {
 
             String line;
@@ -36,10 +33,8 @@ public class WorldMap {
                     }
                 }
 
-
                 Room room = new Room(id, name, availableRooms);
                  world.put(id, room);
-
             }
 
             return true;
@@ -48,29 +43,27 @@ public class WorldMap {
         }
     }
 
-    public void konzole(){
+    public HashMap<Integer, Room> getWorld() {
+        return world;
+    }
 
-            Scanner scanner = new Scanner(System.in);
+    public void setWorld(HashMap<Integer, Room> world) {
+        this.world = world;
+    }
 
-            while (true) {
-                Room room = world.get(currentPosition);
-                System.out.println("Právě se nacházíš v: " + room.getLocationName());
-                System.out.println("Můžeš jít do místností: " + room.getAvailableRooms());
-                System.out.print("Zadej číslo místnosti nebo 0 pro ukončení: ");
+    public int getStart() {
+        return start;
+    }
 
-                int input = scanner.nextInt();
+    public void setStart(int start) {
+        this.start = start;
+    }
 
-                if (input == 0) {
-                    System.out.println("Hra ukončena.");
-                    break;
-                }
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
 
-                if (room.getAvailableRooms().contains(input)) {
-                    currentPosition = input; // Přesun do nové místnosti
-                } else {
-                    System.out.println("Tam nemůžeš jít! Zkus to znovu.");
-                }
-            }
-
+    public void setCurrentPosition(int currentPosition) {
+        this.currentPosition = currentPosition;
     }
 }
