@@ -1,3 +1,9 @@
+package game;
+
+import game.commands.Command;
+import game.commands.Exit;
+import game.commands.Movement;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -33,5 +39,6 @@ public class Console {
         WorldMap worldMap = new WorldMap();
         worldMap.loadMap();
         prikazy.put("jdi", new Movement(worldMap, scanner));
+        prikazy.put("konec", new Exit());
     }
 }

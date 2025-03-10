@@ -1,3 +1,7 @@
+package game;
+
+import game.objects.Room;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -11,7 +15,7 @@ public class WorldMap {
 
 
     public boolean loadMap(){
-        try (BufferedReader br = new BufferedReader(new FileReader("src/Map"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/Map"))) {
 
             String line;
             int lineCounter = 0;

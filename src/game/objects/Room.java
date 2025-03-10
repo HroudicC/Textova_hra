@@ -1,3 +1,5 @@
+package game.objects;
+
 import java.util.ArrayList;
 
 public class Room {
@@ -26,10 +28,10 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "id = " + id +
-                ", locationName = " + locationName +
-                ", availableRooms = " + availableRooms +
-                '}';
+        return "Room{"
+                + "id = " + id
+                + ", locationName = " + locationName
+                + ", availableRooms = " + availableRooms
+                + '}';
     }
 }
