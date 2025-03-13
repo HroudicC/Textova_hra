@@ -1,11 +1,19 @@
 package game.commands;
 
+import game.objects.Inventory;
+
 public class OpenInventory extends Command {
 
+    private Inventory inventory;
+
+    public OpenInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 
     @Override
     public String execute() {
-        return "";
+
+        return inventory.toString();
     }
 
     @Override
@@ -13,7 +21,4 @@ public class OpenInventory extends Command {
         return false;
     }
 
-    public void openInventory() {
-
-    }
 }

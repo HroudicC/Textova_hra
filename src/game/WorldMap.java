@@ -1,5 +1,7 @@
 package game;
 
+import game.objects.Item;
+import game.objects.Npc;
 import game.objects.Room;
 
 import java.io.BufferedReader;
@@ -14,14 +16,13 @@ public class WorldMap {
     private int currentPosition = start;
 
 
-    public boolean loadMap(){
-        try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/Map"))) {
-
+    public boolean loadMap() {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/map"))) {
             String line;
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {
                 lineCounter++;
-                if(lineCounter == 1){
+                if (lineCounter == 1) {
                     continue;
                 }
                 String[] data = line.split(";");
@@ -38,29 +39,75 @@ public class WorldMap {
                 }
 
                 Room room = new Room(id, name, availableRooms);
-                 world.put(id, room);
+                world.put(id, room);
             }
-
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+    public boolean loadNPC() {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/characters"))) {
+            String line;
+            int lineCounter = 0;
+            while ((line = br.readLine()) != null) {
+                lineCounter++;
+                if (lineCounter == 1) {
+                    continue;
+                }
+                String[] split = line.split(";");
+
+                int roomId = Integer.parseInt(split[0]);
+                String npcName = split[1];
+
+                Room room = world.get(roomId);
+                if (room != null) {
+                    Npc npc = new Npc();
+                    npc.setName(npcName);
+                    room.addNpc(npc);
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean loadItems() {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/items"))) {
+            String line;
+            int lineCounter = 0;
+            while ((line = br.readLine()) != null) {
+                lineCounter++;
+                if (lineCounter == 1) {
+                    continue;
+                }
+
+                String[] split = line.split(";");
+                int roomId = Integer.parseInt(split[0]);
+                String itemName = split[1];
+
+                Room room = world.get(roomId);
+                if (room != null) {
+                    Item item = new Item();
+                    item.setItemName(itemName);
+                    room.addItem(item);
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
 
     public HashMap<Integer, Room> getWorld() {
         return world;
-    }
-
-    public void setWorld(HashMap<Integer, Room> world) {
-        this.world = world;
-    }
-
-    public int getStart() {
-        return start;
-    }
-
-    public void setStart(int start) {
-        this.start = start;
     }
 
     public int getCurrentPosition() {

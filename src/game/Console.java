@@ -1,8 +1,7 @@
 package game;
 
-import game.commands.Command;
-import game.commands.Exit;
-import game.commands.Movement;
+import game.commands.*;
+import game.objects.Inventory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +28,7 @@ public class Console {
     }
 
     public void start() {
+        System.out.println("Nacházíš se ve své cele.");
         inicializace();
         do {
             provedPrikaz();
@@ -38,7 +38,13 @@ public class Console {
     private void inicializace() {
         WorldMap worldMap = new WorldMap();
         worldMap.loadMap();
+        worldMap.loadNPC();
+        worldMap.loadItems();
         prikazy.put("jdi", new Movement(worldMap, scanner));
+        prikazy.put("pruzkum", new Explore(worldMap));
+        Inventory inventory = new Inventory();
+        prikazy.put("vzit", new Take(worldMap, inventory));
         prikazy.put("konec", new Exit());
+        prikazy.put("inventar", new OpenInventory(inventory));
     }
 }

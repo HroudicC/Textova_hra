@@ -9,7 +9,7 @@ public class Inventory{
 
         public boolean addItem(Item item) {
 
-            if (items.contains(item) || items.contains(null)) {
+            if (items.contains(item)) {
                 return false;
             }
             items.add(item);
@@ -25,6 +25,7 @@ public class Inventory{
         }
 
         public ArrayList<Item> getItems() {
+
             return items;
         }
 
