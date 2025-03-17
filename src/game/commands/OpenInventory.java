@@ -12,7 +12,6 @@ public class OpenInventory extends Command {
 
     @Override
     public String execute() {
-
         return inventory.toString();
     }
 

@@ -22,9 +22,8 @@ public class WorldMap {
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {
                 lineCounter++;
-                if (lineCounter == 1) {
-                    continue;
-                }
+                if (lineCounter == 1) continue;
+
                 String[] data = line.split(";");
 
                 int id = Integer.parseInt(data[0]);
@@ -48,26 +47,32 @@ public class WorldMap {
         }
     }
 
-
-
     public boolean loadNPC() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/characters"))) {
             String line;
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {
                 lineCounter++;
-                if (lineCounter == 1) {
-                    continue;
-                }
-                String[] split = line.split(";");
+                if (lineCounter == 1) continue;
 
+                String[] split = line.split(";");
                 int roomId = Integer.parseInt(split[0]);
                 String npcName = split[1];
 
                 Room room = world.get(roomId);
                 if (room != null) {
-                    Npc npc = new Npc();
-                    npc.setName(npcName);
+                    Npc npc = new Npc(npcName);
+
+
+                    switch (npcName) {
+                        case "Vezen 1":
+                            npc.addTradeItem("Cigarety", "Latka");
+                            break;
+                        case "Kucharka":
+                            npc.addTradeItem("Mince", "Kapesni nozik");
+                            break;
+                    }
+
                     room.addNpc(npc);
                 }
             }
@@ -84,18 +89,18 @@ public class WorldMap {
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {
                 lineCounter++;
-                if (lineCounter == 1) {
-                    continue;
-                }
+                if (lineCounter == 1) continue;
 
                 String[] split = line.split(";");
+                if (split.length < 3) continue;
+
                 int roomId = Integer.parseInt(split[0]);
-                String itemName = split[1];
+                String itemName = split[1].trim();
+                String holder = split[2].trim();
 
                 Room room = world.get(roomId);
-                if (room != null) {
-                    Item item = new Item();
-                    item.setItemName(itemName);
+                if (room != null && holder.equalsIgnoreCase("volné")) {
+                    Item item = new Item(itemName, holder, "");
                     room.addItem(item);
                 }
             }
@@ -105,6 +110,7 @@ public class WorldMap {
             return false;
         }
     }
+
 
     public HashMap<Integer, Room> getWorld() {
         return world;

@@ -15,7 +15,7 @@ public class Console {
     private ArrayList<String> commands = new ArrayList<>();
 
     private void provedPrikaz() {
-        System.out.print(">> ");
+        System.out.print("Zadej příkaz \n >> ");
         String prikaz = scanner.nextLine();
         commands.add(prikaz);
 
@@ -40,11 +40,12 @@ public class Console {
         worldMap.loadMap();
         worldMap.loadNPC();
         worldMap.loadItems();
+        Inventory inventory = new Inventory();
         prikazy.put("jdi", new Movement(worldMap, scanner));
         prikazy.put("pruzkum", new Explore(worldMap));
-        Inventory inventory = new Inventory();
         prikazy.put("vzit", new Take(worldMap, inventory));
         prikazy.put("konec", new Exit());
         prikazy.put("inventar", new OpenInventory(inventory));
+        prikazy.put("promluvit", new Interact(inventory, worldMap));
     }
 }

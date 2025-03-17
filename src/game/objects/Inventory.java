@@ -16,11 +16,15 @@ public class Inventory{
             return true;
         }
 
-        public boolean removeItem(Item item) {
-            if (items.contains(item)) {
-                items.remove(item);
-                return true;
+        public boolean removeItem(String itemName) {
+            for (Item item : items) {
+                if (item.getItemName().equalsIgnoreCase(itemName)) {
+                    items.remove(item);
+                    System.out.println("Odebrán předmět z inventáře: " + item.getItemName()); // Debug
+                    return true;
+                }
             }
+            System.out.println("Předmět nebyl nalezen v inventáři: " + itemName); // Debug
             return false;
         }
 
@@ -28,6 +32,15 @@ public class Inventory{
 
             return items;
         }
+
+    public boolean hasItem(String itemName) {
+        for (Item item : items) {
+            if (item.getItemName().equalsIgnoreCase(itemName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {
