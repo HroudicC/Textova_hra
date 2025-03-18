@@ -22,6 +22,15 @@ public class Interact extends Command {
 
     @Override
     public String execute() {
+        return interactWithNpc();
+    }
+
+    @Override
+    public boolean exit() {
+        return false;
+    }
+
+    public String interactWithNpc() {
         Room currentRoom = worldMap.getWorld().get(worldMap.getCurrentPosition());
 
         if (currentRoom.getNpcs().isEmpty()) {
@@ -73,14 +82,8 @@ public class Interact extends Command {
             inventory.removeItem(offeredItem);
             inventory.addItem(new Item(receivedItem, "Npc", offeredItem));
         } else {
-            System.out.println("Nemáš požadovaný předmět nebo NPC tuto výměnu nenabízí.");
+            System.out.println("Nemáš požadovaný předmět, nebo " + selectedNpc + " tuto výměnu nenabízí.");
         }
         return "";
     }
-
-    @Override
-    public boolean exit() {
-        return false;
-    }
-
 }

@@ -20,16 +20,14 @@ public class Inventory{
             for (Item item : items) {
                 if (item.getItemName().equalsIgnoreCase(itemName)) {
                     items.remove(item);
-                    System.out.println("Odebrán předmět z inventáře: " + item.getItemName()); // Debug
                     return true;
                 }
             }
-            System.out.println("Předmět nebyl nalezen v inventáři: " + itemName); // Debug
+            System.out.println("Tento předmět nemáš v inventáři.");
             return false;
         }
 
         public ArrayList<Item> getItems() {
-
             return items;
         }
 
