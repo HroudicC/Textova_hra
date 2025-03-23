@@ -2,6 +2,7 @@ package game;
 
 import game.commands.*;
 import game.objects.Inventory;
+import game.objects.ItemUsageRules;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +41,7 @@ public class Console {
         worldMap.loadMap();
         worldMap.loadNPC();
         worldMap.loadItems();
+        ItemUsageRules.inicializace();
         Inventory inventory = new Inventory();
         prikazy.put("jdi", new Movement(worldMap, scanner));
         prikazy.put("pruzkum", new Explore(worldMap));
@@ -47,5 +49,6 @@ public class Console {
         prikazy.put("konec", new Exit());
         prikazy.put("inventar", new OpenInventory(inventory));
         prikazy.put("promluvit", new Interact(inventory, worldMap));
+        prikazy.put("pouzit", new Use(inventory, scanner, worldMap));
     }
 }

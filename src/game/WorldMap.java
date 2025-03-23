@@ -36,8 +36,9 @@ public class WorldMap {
                         availableRooms.add(Integer.parseInt(room));
                     }
                 }
+                boolean locked = Boolean.parseBoolean(data[3].trim());
 
-                Room room = new Room(id, name, availableRooms);
+                Room room = new Room(id, name, availableRooms, locked);
                 world.put(id, room);
             }
             return true;
@@ -110,7 +111,6 @@ public class WorldMap {
             return false;
         }
     }
-
 
     public HashMap<Integer, Room> getWorld() {
         return world;

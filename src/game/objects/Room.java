@@ -9,13 +9,22 @@ public class Room {
     private ArrayList<Integer> availableRooms;
     private ArrayList<Npc> npcs = new ArrayList<>();
     private ArrayList<Item> items = new ArrayList<>();
+    private boolean locked;
 
-    public Room(int roomId, String locationName, ArrayList<Integer> availableRooms) {
+    public Room(int roomId, String locationName, ArrayList<Integer> availableRooms, boolean locked) {
         this.roomId = roomId;
         this.locationName = locationName;
         this.availableRooms = availableRooms;
+        this.locked = locked;
     }
 
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
 
     public String getLocationName() {
         return locationName;

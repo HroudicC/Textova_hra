@@ -1,8 +1,8 @@
-ID místnosti;Nazev místnosti;místnost, kam můžu jít
-1;Hlavní cela; 7
-2;Vedlejší cela 1;7
-3;Vedlejší cela 2;7
-4;Místnost pro stráže;7
-5;Jídelna;7
-6;Společenská místnost;7
-7;Chodba;1 2 3 4 5 6
+ID místnosti;Nazev místnosti;místnost, kam můžu jít;Zamceno (true/false)
+1;Hlavní cela;7;false
+2;Vedlejší cela 1;7;false
+3;Vedlejší cela 2;7;false
+4;Místnost pro stráže;7;true
+5;Jídelna;7;false
+6;Společenská místnost;7;false
+7;Chodba;1 2 3 4 5 6;false
