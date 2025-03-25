@@ -14,6 +14,7 @@ public class Interact extends Command {
     Inventory inventory;
     WorldMap worldMap;
     Scanner scanner = new Scanner(System.in);
+    private boolean endGame = false;
 
     public Interact(Inventory inventory, WorldMap worldMap) {
         this.inventory = inventory;
@@ -27,7 +28,7 @@ public class Interact extends Command {
 
     @Override
     public boolean exit() {
-        return false;
+        return endGame;
     }
 
     public String interactWithNpc() {
@@ -52,6 +53,11 @@ public class Interact extends Command {
         if (selectedNpc == null) {
             System.out.println("Taková osoba tady není...");
             return "";
+        }
+
+        if (selectedNpc.getName().equalsIgnoreCase("Straz")) {
+            System.out.println("Chrrr... pššš... chrrr... huh? Co tady děláš!!!");
+          endGame = true;
         }
 
         if (selectedNpc.getTradeItems().isEmpty()) {

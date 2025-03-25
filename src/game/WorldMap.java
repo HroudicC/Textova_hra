@@ -72,6 +72,8 @@ public class WorldMap {
                         case "Kucharka":
                             npc.addTradeItem("Mince", "Kapesni nozik");
                             break;
+                        case "Vezen 2":
+                            npc.addTradeItem("Latka", "Sroubovak");
                     }
 
                     room.addNpc(npc);

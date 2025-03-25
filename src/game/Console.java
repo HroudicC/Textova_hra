@@ -43,12 +43,13 @@ public class Console {
         worldMap.loadItems();
         ItemUsageRules.inicializace();
         Inventory inventory = new Inventory();
+        ItemUsageRules itemUsageRules = new ItemUsageRules(worldMap, inventory);
         prikazy.put("jdi", new Movement(worldMap, scanner));
         prikazy.put("pruzkum", new Explore(worldMap));
         prikazy.put("vzit", new Take(worldMap, inventory));
         prikazy.put("konec", new Exit());
         prikazy.put("inventar", new OpenInventory(inventory));
         prikazy.put("promluvit", new Interact(inventory, worldMap));
-        prikazy.put("pouzit", new Use(inventory, scanner, worldMap));
+        prikazy.put("pouzit", new Use(inventory, scanner, worldMap, itemUsageRules));
     }
 }

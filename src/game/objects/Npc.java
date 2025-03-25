@@ -25,8 +25,7 @@ public class Npc {
     }
 
     public String getOfferedItem(String requiredItem) {
-        String item = tradeItems.get(requiredItem.trim().toLowerCase());
-        return item;
+        return tradeItems.get(requiredItem.trim().toLowerCase());
     }
 
 

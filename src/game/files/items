@@ -2,7 +2,7 @@ ID místnosti;Název předmětu;Držitel (volné/NPC);Požadovaný předmět k v
 5;Lzice;volné;
 4;Cigarety;volné;
 5;Kapesni nozik;Kuchařka;Mince
-6;Latka;Vězeň 1;Cigarety
+6;Latka;Vezen 1;Cigarety
 3;Drat;volné;
-1;Sroubovak;volné;
 6;Mince;volné;
+6;Sroubovak;Vezen 2;Latka
