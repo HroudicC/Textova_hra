@@ -16,8 +16,7 @@ public class Explore extends Command {
 
     @Override
     public String execute() {
-        exploreRoom();
-        return "";
+        return exploreRoom();
     }
 
     @Override
@@ -25,14 +24,13 @@ public class Explore extends Command {
         return false;
     }
 
-    public void exploreRoom() {
+    public String exploreRoom() {
         Room currentRoom = worldMap.getWorld().get(worldMap.getCurrentPosition());
         ArrayList<Npc> npcs = currentRoom.getNpcs();
         ArrayList<Item> items = currentRoom.getItems();
 
         if (npcs.isEmpty() && items.isEmpty()) {
-            System.out.println("V místnosti nikdo/nic není.");
-            return;
+            return "V místnosti nikdo/nic není.";
         }
 
         System.out.println("V místnosti se nachází:");
@@ -45,5 +43,6 @@ public class Explore extends Command {
             System.out.println("- " + item);
         }
 
+        return "";
     }
 }

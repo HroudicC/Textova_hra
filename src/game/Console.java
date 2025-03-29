@@ -51,5 +51,14 @@ public class Console {
         prikazy.put("inventar", new OpenInventory(inventory));
         prikazy.put("promluvit", new Interact(inventory, worldMap));
         prikazy.put("pouzit", new Use(inventory, scanner, worldMap, itemUsageRules));
+        prikazy.put("pomoc", new Help(this));
+    }
+
+    public HashMap<String, Command> getPrikazy() {
+        return prikazy;
+    }
+
+    public void setPrikazy(HashMap<String, Command> prikazy) {
+        this.prikazy = prikazy;
     }
 }

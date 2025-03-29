@@ -125,4 +125,7 @@ public class WorldMap {
     public void setCurrentPosition(int currentPosition) {
         this.currentPosition = currentPosition;
     }
+
+    public void setWorld(HashMap<Integer, Room> world) {
+    }
 }

@@ -4,12 +4,10 @@ public class ItemUsage {
 
     private String itemName;
     private int roomId;
-    private String action;
 
-    public ItemUsage(String itemName, int roomId, String action) {
+    public ItemUsage(String itemName, int roomId) {
         this.itemName = itemName;
         this.roomId = roomId;
-        this.action = action;
     }
 
     public String getItemName() {
@@ -28,11 +26,5 @@ public class ItemUsage {
         this.roomId = roomId;
     }
 
-    public String getAction() {
-        return action;
-    }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
 }

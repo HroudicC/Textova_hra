@@ -35,8 +35,7 @@ public class Interact extends Command {
         Room currentRoom = worldMap.getWorld().get(worldMap.getCurrentPosition());
 
         if (currentRoom.getNpcs().isEmpty()) {
-            System.out.println("V místnosti se nenachází žádná osoba.");
-            return "";
+            return "V místnosti se nenachází žádná osoba.";
         }
 
         System.out.print("S kým se chceš bavit? \n > ");
@@ -51,18 +50,16 @@ public class Interact extends Command {
         }
 
         if (selectedNpc == null) {
-            System.out.println("Taková osoba tady není...");
-            return "";
+            return "Taková osoba tady není...";
         }
 
         if (selectedNpc.getName().equalsIgnoreCase("Straz")) {
-            System.out.println("Chrrr... pššš... chrrr... huh? Co tady děláš!!!");
+            System.out.println("Chrrr... pššš... chrrr... huh? Co tady děláš!!! (ending 3)");
           endGame = true;
         }
 
         if (selectedNpc.getTradeItems().isEmpty()) {
-            System.out.println(selectedNpc.getName() + " nemá žádné obchodní nabídky.");
-            return "";
+            return selectedNpc.getName() + " nemá žádné obchodní nabídky.";
         }
 
         System.out.println(selectedNpc.getName() + " chce vyměnit:");
@@ -88,7 +85,7 @@ public class Interact extends Command {
             inventory.removeItem(offeredItem);
             inventory.addItem(new Item(receivedItem, "Npc", offeredItem));
         } else {
-            System.out.println("Nemáš požadovaný předmět, nebo " + selectedNpc + " tuto výměnu nenabízí.");
+            return "Nemáš požadovaný předmět, nebo " + selectedNpc + " tuto výměnu nenabízí.";
         }
         return "";
     }
