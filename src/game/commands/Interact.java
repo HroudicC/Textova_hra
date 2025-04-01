@@ -8,8 +8,10 @@ import game.objects.Room;
 
 import java.util.Scanner;
 
+/**
+ * Represents the command for interacting with NPCs in the game.
+ */
 public class Interact extends Command {
-
 
     Inventory inventory;
     WorldMap worldMap;
@@ -32,6 +34,11 @@ public class Interact extends Command {
         return endGame;
     }
 
+    /**
+     * Handles interaction with an NPC, including trading items and one hidden ending.
+     * ChatGPT helped me with this method.
+     * @return A message describing the interaction outcome.
+     */
     public String interactWithNpc() {
         Room currentRoom = worldMap.getWorld().get(worldMap.getCurrentPosition());
 
@@ -54,6 +61,7 @@ public class Interact extends Command {
             return "Taková osoba tady není...";
         }
 
+        //Hidden ending
         if (selectedNpc.getName().equalsIgnoreCase("Straz")) {
             System.out.println("Chrrr... pššš... chrrr... huh? Co tady děláš!!! (ending 3)");
           endGame = true;

@@ -2,6 +2,9 @@ package game.commands;
 
 import game.objects.Inventory;
 
+/**
+ * Represents a command to display the player's inventory.
+ */
 public class OpenInventory extends Command {
 
     private Inventory inventory;

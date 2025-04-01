@@ -1,5 +1,8 @@
 package game.objects;
 
+/**
+ * Represents an item usage rule, defining which item can be used in which room.
+ */
 public class ItemUsage {
 
     private String itemName;

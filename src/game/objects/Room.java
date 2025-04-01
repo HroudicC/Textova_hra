@@ -2,6 +2,9 @@ package game.objects;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a room in the game.
+ */
 public class Room {
 
     private int roomId;
@@ -16,6 +19,29 @@ public class Room {
         this.locationName = locationName;
         this.availableRooms = availableRooms;
         this.locked = locked;
+    }
+
+    public void addNpc(Npc npc) {
+        npcs.add(npc);
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    /**
+     * Removes an item if it exists.
+     * @param itemName The name of the item to remove.
+     * @return The return item, or null if the item was not found.
+     */
+    public Item removeItem(String itemName) {
+        for (Item item : items) {
+            if (item.getItemName().equalsIgnoreCase(String.valueOf(itemName))) {
+                items.remove(item);
+                return item;
+            }
+        }
+        return null;
     }
 
     public boolean isLocked() {
@@ -42,29 +68,9 @@ public class Room {
         return npcs;
     }
 
-    public void addNpc(Npc npc) {
-        npcs.add(npc);
-    }
-
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
     public ArrayList<Item> getItems() {
         return items;
     }
-
-
-    public Item removeItem(String itemName) {
-        for (Item item : items) {
-            if (item.getItemName().equalsIgnoreCase(String.valueOf(itemName))) {
-                items.remove(item);
-                return item;
-            }
-        }
-        return null;
-    }
-
 
     @Override
     public String toString() {

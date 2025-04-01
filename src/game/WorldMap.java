@@ -9,6 +9,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+/**
+ * Class that creates the whole game. Initializes the entire map, npcs and items from the files
+ * and managing the player's current position.
+ */
 public class WorldMap {
 
     HashMap<Integer, Room> world = new HashMap<>();
@@ -16,6 +21,12 @@ public class WorldMap {
     private int currentPosition = start;
 
 
+    /**
+     * Loads the map from the file "src/game/files/map".
+     * The file is divided into three parts, the room id, the room name and if it is locked.
+     * The condition on line 44 was made via chatgpt
+     * @return true if the map was successfully loaded.
+     */
     public boolean loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/map"))) {
             String line;
@@ -36,9 +47,9 @@ public class WorldMap {
                         availableRooms.add(Integer.parseInt(room));
                     }
                 }
-                boolean locked = Boolean.parseBoolean(data[3].trim());
+                boolean isLocked = Boolean.parseBoolean(data[3].trim());
 
-                Room room = new Room(id, name, availableRooms, locked);
+                Room room = new Room(id, name, availableRooms, isLocked);
                 world.put(id, room);
             }
             return true;
@@ -48,6 +59,11 @@ public class WorldMap {
         }
     }
 
+    /**
+     * Loads NPCs from the file "src/game/files/characters".
+     * NPCs are assigned to specific rooms based on the file's content and have predefined trade items.
+     * @return true if the Npcs were sucessfully loaded.
+     */
     public boolean loadNPC() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/characters"))) {
             String line;
@@ -64,7 +80,6 @@ public class WorldMap {
                 if (room != null) {
                     Npc npc = new Npc(npcName);
 
-
                     switch (npcName) {
                         case "Vezen 1":
                             npc.addTradeItem("Cigarety", "Latka");
@@ -74,8 +89,8 @@ public class WorldMap {
                             break;
                         case "Vezen 2":
                             npc.addTradeItem("Latka", "Sroubovak");
+                            break;
                     }
-
                     room.addNpc(npc);
                 }
             }
@@ -86,6 +101,11 @@ public class WorldMap {
         }
     }
 
+    /**
+     * Loads items from the file "src/game/files/items".
+     * If the item is "volné", it is free to pick up in the room.
+     * @return true if the items were succesfully loaded.
+     */
     public boolean loadItems() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/items"))) {
             String line;

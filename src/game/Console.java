@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Represents the game console where the player interacts with the game.
+ * This class manages command execution, initializes the game world,
+ * and handles user input.
+ */
 public class Console {
 
     private Scanner scanner = new Scanner(System.in);
@@ -15,6 +20,11 @@ public class Console {
     private HashMap<String, Command> prikazy = new HashMap<>();
     private ArrayList<String> commands = new ArrayList<>();
 
+    /**
+     * Reads and processes a user command.
+     * If the command exists in the available commands, it executes the corresponding action.
+     * Otherwise, it informs the user that the command is invalid.
+     */
     private void provedPrikaz() {
         System.out.print("Zadej příkaz \n >> ");
         String prikaz = scanner.nextLine();
@@ -28,14 +38,23 @@ public class Console {
         }
     }
 
+    /**
+     * Starts the game loop, displaying an introductory message and initializing the game world.
+     * The loop continues until the player finishes the game.
+     */
     public void start() {
-        System.out.println("Nacházíš se ve své cele.");
+        System.out.println("Nacházíš se v hlavní cele. Nevíš proč ani za co, takže tvým úkolem je dostat se odsud co nejrychleji pryč. \n" +
+                "Pokud nevíš, co dělat, napiš příkaz 'pomoc' a zobrazí se ti všechny dostupné příkazy. Všechna slova piš bez diakritiky! Hodně štěstí...");
         inicializace();
         do {
             provedPrikaz();
         } while (!exit);
     }
 
+    /**
+     * Initializes the game world, loading the map, NPCs, and items from files.
+     * It also initializes item usage rules and registers all available commands.
+     */
     private void inicializace() {
         WorldMap worldMap = new WorldMap();
         worldMap.loadMap();
@@ -43,7 +62,7 @@ public class Console {
         worldMap.loadItems();
         ItemUsageRules.inicializace();
         Inventory inventory = new Inventory();
-        ItemUsageRules itemUsageRules = new ItemUsageRules(worldMap, inventory);
+        ItemUsageRules itemUsageRules = new ItemUsageRules(worldMap, inventory, scanner);
         prikazy.put("jdi", new Movement(worldMap, scanner));
         prikazy.put("pruzkum", new Explore(worldMap));
         prikazy.put("vzit", new Take(worldMap, inventory, scanner));

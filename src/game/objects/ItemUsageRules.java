@@ -6,20 +6,28 @@ import game.WorldMap;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that defines the rules for using items in specific rooms.
+ * Handles unlocking rooms and achieving different endings.
+ */
 public class ItemUsageRules {
 
     public static ArrayList<ItemUsage> itemUsages = new ArrayList<>();
-    WorldMap worldMap;
-    Scanner scanner = new Scanner(System.in);
-    Inventory inventory;
-    private boolean isTileRemoved = false; //Kvuli podmince k pouziti predmetu
+    private WorldMap worldMap;
+    private Scanner scanner;
+    private Inventory inventory;
+    private boolean isTileRemoved = false; //Because of the condition to use the item
 
-    public ItemUsageRules(WorldMap worldMap, Inventory inventory) {
+
+    public ItemUsageRules(WorldMap worldMap, Inventory inventory, Scanner scanner) {
         this.worldMap = worldMap;
         this.inventory = inventory;
-
+        this.scanner = scanner;
     }
 
+    /**
+     * Initializes the items and the rooms in which they are used.
+     */
     public static void inicializace(){
         itemUsages.add(new ItemUsage("Lzice", 1));
         itemUsages.add(new ItemUsage("Drat", 7));
@@ -28,14 +36,21 @@ public class ItemUsageRules {
 
     }
 
+    /**
+     * Applies the item usage rules based on the given item name and the player's current room.
+     * ChatGPT helped me with the ending that starts on line 77.
+     * @param itemName The name of the item the player wants to use.
+     * @param roomId ID of the current room where the player is in.
+     * @return A message indicating the result of the action and (if the game has been completed) ending the program.
+     */
     public String applyItemUsageRules(String itemName, int roomId) {
 
-        //Podminka pro pouziti dratu k odemceni mistnosti pro straze.
+        // Condition for using the 'drat' to unlock the guard's room.
         if (itemName.equalsIgnoreCase("Drat") && roomId == 7) {
             System.out.println("Zadejte místnost k odemčení:");
-
-            int roomToUnlock = scanner.nextInt();
-
+        try {
+            String input = scanner.nextLine().trim();
+            int roomToUnlock = Integer.parseInt(input);
             if (roomToUnlock == 4) {
                 Room guardRoom = worldMap.getWorld().get(4);
                 if (guardRoom.isLocked()) {
@@ -46,9 +61,12 @@ public class ItemUsageRules {
                     return "Místnost pro stráže není zamčená.";
                 }
             }
+        }catch (NumberFormatException e){
+            return "Neplatné číslo místnosti.";
+            }
         }
 
-        //Podminka pro pouziti Sroubovaku (ending 1).
+        // Condition for using the 'Sroubovak' (Ending 1).
         if (itemName.equalsIgnoreCase("Sroubovak") && roomId == 4) {
             System.out.println("Podařilo se ti nepozorovaně proklouznout do místnosti pro stráže. Opatrně jsi vyšrouboval mříž ventilace a protáhl ses úzkým tunelem ven. \n" +
                     "GRATULACE! Úspěšně jsi unikl z vězení! (Ending 1)");
@@ -56,7 +74,7 @@ public class ItemUsageRules {
         }
 
 
-        //Podminka pro pouziti Kapesniho noziku + Lzice (ending 2).
+        // Condition for using the 'kapesni nozik' and 'lzice' (Ending 2).
         if (itemName.equalsIgnoreCase("Kapesni nozik") && roomId == 1) {
             if (!isTileRemoved) {
                 isTileRemoved = true;
@@ -74,8 +92,6 @@ public class ItemUsageRules {
             }
         }
 
-
         return "Tento předmět nemůžeš použít v této místnosti.";
     }
-
 }
