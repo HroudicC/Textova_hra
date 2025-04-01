@@ -13,12 +13,13 @@ public class Interact extends Command {
 
     Inventory inventory;
     WorldMap worldMap;
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner;
     private boolean endGame = false;
 
-    public Interact(Inventory inventory, WorldMap worldMap) {
+    public Interact(Inventory inventory, WorldMap worldMap, Scanner scanner) {
         this.inventory = inventory;
         this.worldMap = worldMap;
+        this.scanner = scanner;
     }
 
     @Override
@@ -81,7 +82,6 @@ public class Interact extends Command {
         if (itemFoundInTrade && inventory.hasItem(offeredItem)) {
             String receivedItem = selectedNpc.getOfferedItem(offeredItem);
             System.out.println("Vyměnil jsi " + offeredItem + " za " + receivedItem);
-
             inventory.removeItem(offeredItem);
             inventory.addItem(new Item(receivedItem, "Npc", offeredItem));
         } else {

@@ -46,10 +46,10 @@ public class Console {
         ItemUsageRules itemUsageRules = new ItemUsageRules(worldMap, inventory);
         prikazy.put("jdi", new Movement(worldMap, scanner));
         prikazy.put("pruzkum", new Explore(worldMap));
-        prikazy.put("vzit", new Take(worldMap, inventory));
+        prikazy.put("vzit", new Take(worldMap, inventory, scanner));
         prikazy.put("konec", new Exit());
         prikazy.put("inventar", new OpenInventory(inventory));
-        prikazy.put("promluvit", new Interact(inventory, worldMap));
+        prikazy.put("promluvit", new Interact(inventory, worldMap, scanner));
         prikazy.put("pouzit", new Use(inventory, scanner, worldMap, itemUsageRules));
         prikazy.put("pomoc", new Help(this));
     }
