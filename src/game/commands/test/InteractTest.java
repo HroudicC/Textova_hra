@@ -11,12 +11,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
 
+/**
+ * Test class for the Interact command.
+ */
 class InteractTest {
 
     private Inventory inventory;
     private WorldMap worldMap;
     private Interact interact;
 
+    /**
+     * Sets up the test environment before each test.
+     * Initializes inventory, world, and loads the map, NPCs, and items.
+     */
     @BeforeEach
     void setUp() {
         inventory = new Inventory();
@@ -27,6 +34,10 @@ class InteractTest {
         worldMap.loadItems();
     }
 
+    /**
+     * Tests interaction in a room with no NPCs.
+     * Expects a message indicating the absence of people in the room.
+     */
     @Test
     void testInteractWithNoNpcInRoom() {
 
@@ -39,6 +50,10 @@ class InteractTest {
         assertEquals("V místnosti se nenachází žádná osoba.", result);
     }
 
+    /**
+     * Tests interaction with an NPC that has no trade offers.
+     * Creates a new npc without trade and expects a report of lack of trading offers.
+     */
     @Test
     void testInteractWithNpcNoTrade() {
 

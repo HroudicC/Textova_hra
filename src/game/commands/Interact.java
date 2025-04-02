@@ -24,6 +24,10 @@ public class Interact extends Command {
         this.scanner = scanner;
     }
 
+    /**
+     * Executes the interact command, allowing the player to interact with NPCs.
+     * @return A message describing the result of the interaction.
+     */
     @Override
     public String execute() {
         return interactWithNpc();

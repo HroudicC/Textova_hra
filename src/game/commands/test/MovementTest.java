@@ -9,11 +9,18 @@ import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for the Movement command.
+ */
 class MovementTest {
 
     private WorldMap worldMap;
     private Movement movement;
 
+    /**
+     * Sets up the test environment before each test.
+     * Initializes the world and loads the map, NPCs, and items.
+     */
     @BeforeEach
     void setUp() {
         worldMap = new WorldMap();
@@ -23,6 +30,11 @@ class MovementTest {
         worldMap.loadItems();
     }
 
+    /**
+     * Tests movement to an unlocked room.
+     * Expects the player to successfully move to the target room.
+     * ChatGPT helped me with the first test and then I did the rest by myself.
+     */
     @Test
     void testMoveToUnlockedRoom() {
 
@@ -35,7 +47,10 @@ class MovementTest {
         assertEquals(5, worldMap.getCurrentPosition());
     }
 
-
+    /**
+     * Tests movement to a locked room.
+     * Expects the player to remain in the current room.
+     */
     @Test
     void testMoveToLockedRoom() {
 
@@ -48,6 +63,10 @@ class MovementTest {
         assertEquals(7, worldMap.getCurrentPosition());
     }
 
+    /**
+     * Tests movement with invalid input.
+     * Expects the player to remain in the current room.
+     */
     @Test
     void testMoveWithInvalidInput() {
 

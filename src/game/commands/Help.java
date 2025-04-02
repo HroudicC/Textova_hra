@@ -19,6 +19,10 @@ public class Help extends Command {
         this.console = console;
     }
 
+    /**
+     * Executes the Help command, returning a formatted list of available commands.
+     * @return A string containing the list of commands.
+     */
     @Override
     public String execute() {
        return helpMessage();

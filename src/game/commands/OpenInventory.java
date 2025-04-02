@@ -13,6 +13,10 @@ public class OpenInventory extends Command {
         this.inventory = inventory;
     }
 
+    /**
+     * Executes the command by returning the inventory.
+     * @return The string representation of the inventory.
+     */
     @Override
     public String execute() {
         return inventory.toString();

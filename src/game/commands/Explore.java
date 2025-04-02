@@ -18,6 +18,10 @@ public class Explore extends Command {
         this.worldMap = worldMap;
     }
 
+    /**
+     * Executes the explore command, displaying all NPCs and items in the current room.
+     * @return A formatted string listing all NPCs and items in the room, or a message if the room is empty.
+     */
     @Override
     public String execute() {
         return exploreRoom();
