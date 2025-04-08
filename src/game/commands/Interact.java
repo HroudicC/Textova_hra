@@ -40,7 +40,7 @@ public class Interact extends Command {
 
     /**
      * Handles interaction with an NPC, including trading items and one hidden ending.
-     * ChatGPT helped me with this method.
+     * ChatGPT helped me with this command!
      * @return A message describing the interaction outcome.
      */
     public String interactWithNpc() {

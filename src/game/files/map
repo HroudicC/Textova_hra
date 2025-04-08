@@ -1,4 +1,4 @@
-ID místnosti;Nazev místnosti;místnost, kam můžu jít;Zamceno (true/false)
+ID místnosti;Nazev místnosti;Místnost, kam můžu jít;Zamčeno (true/false)
 1;Hlavní cela;7;false
 2;Vedlejší cela 1;7;false
 3;Vedlejší cela 2;7;false

@@ -60,10 +60,6 @@ public class Room {
         return availableRooms;
     }
 
-    public void setNpcs(ArrayList<Npc> npcs) {
-        this.npcs = npcs;
-    }
-
     public ArrayList<Npc> getNpcs() {
         return npcs;
     }

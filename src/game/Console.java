@@ -60,7 +60,7 @@ public class Console {
         worldMap.loadMap();
         worldMap.loadNPC();
         worldMap.loadItems();
-        ItemUsageRules.inicializace();
+        ItemUsageRules.initializeItems();
         Inventory inventory = new Inventory();
         ItemUsageRules itemUsageRules = new ItemUsageRules(worldMap, inventory, scanner);
         prikazy.put("jdi", new Movement(worldMap, scanner));
@@ -75,9 +75,5 @@ public class Console {
 
     public HashMap<String, Command> getPrikazy() {
         return prikazy;
-    }
-
-    public void setPrikazy(HashMap<String, Command> prikazy) {
-        this.prikazy = prikazy;
     }
 }

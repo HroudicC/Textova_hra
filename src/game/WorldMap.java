@@ -24,7 +24,7 @@ public class WorldMap {
     /**
      * Loads the map from the file "src/game/files/map".
      * The file is divided into three parts, the room id, the room name and if it is locked.
-     * The condition on line 44 was made via chatgpt
+     * The condition on line 44 was made by chatgpt
      * @return true if the map was successfully loaded.
      */
     public boolean loadMap() {
@@ -104,7 +104,7 @@ public class WorldMap {
     /**
      * Loads items from the file "src/game/files/items".
      * If the item is "volné", it is free to pick up in the room.
-     * @return true if the items were succesfully loaded.
+     * @return true if the items were successfully loaded.
      */
     public boolean loadItems() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/game/files/items"))) {
@@ -144,8 +144,5 @@ public class WorldMap {
 
     public void setCurrentPosition(int currentPosition) {
         this.currentPosition = currentPosition;
-    }
-
-    public void setWorld(HashMap<Integer, Room> world) {
     }
 }

@@ -28,7 +28,7 @@ public class ItemUsageRules {
     /**
      * Initializes the items and the rooms in which they are used.
      */
-    public static void inicializace(){
+    public static void initializeItems(){
         itemUsages.add(new ItemUsage("Lzice", 1));
         itemUsages.add(new ItemUsage("Drat", 7));
         itemUsages.add(new ItemUsage("Sroubovak", 4));

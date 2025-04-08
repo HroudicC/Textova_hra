@@ -46,7 +46,6 @@ public class Explore extends Command {
         }
 
         System.out.println("V místnosti se nachází:");
-
         for (Npc npc : npcs) {
             System.out.println("- " + npc);
         }

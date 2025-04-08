@@ -20,26 +20,6 @@ public class Item {
   return itemName;
  }
 
- public void setItemName(String itemName) {
-  this.itemName = itemName;
- }
-
- public String getHolder() {
-  return holder;
- }
-
- public void setHolder(String holder) {
-  this.holder = holder;
- }
-
- public String getRequiredItem() {
-  return requiredItem;
- }
-
- public void setRequiredItem(String requiredItem) {
-  this.requiredItem = requiredItem;
- }
-
  @Override
  public String toString() {
   return itemName;

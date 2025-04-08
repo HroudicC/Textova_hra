@@ -33,7 +33,7 @@ class MovementTest {
     /**
      * Tests movement to an unlocked room.
      * Expects the player to successfully move to the target room.
-     * ChatGPT helped me with the first test and then I did the rest by myself.
+     * ChatGPT helped me with this first test, and then I did the rest by myself.
      */
     @Test
     void testMoveToUnlockedRoom() {
